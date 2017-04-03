@@ -27,8 +27,8 @@ def get_nodes(port):
 
 def main():
     port = str(sys.argv[1])
-    #print(json.dumps(get_nodes(port), indent=4))
-    #print(json.dumps(get_services(port), indent=4))
+    print(json.dumps(get_nodes(port), indent=4))
+    print(json.dumps(get_services(port), indent=4))
     print(get_vault_master(port))
     return
 
