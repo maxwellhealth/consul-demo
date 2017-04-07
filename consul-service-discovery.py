@@ -1,6 +1,7 @@
 import requests
 import json
 import sys
+from time import sleep
 
 def get_vault_master(port):
     r = requests.get('http://127.0.0.1:' + port + '/v1/catalog/service/vault')
@@ -27,8 +28,13 @@ def get_nodes(port):
 
 def main():
     port = str(sys.argv[1])
+    print('Available nodes:\n')
     print(json.dumps(get_nodes(port), indent=4))
+    sleep(3)
+    print('=======================\nAvailable Services:\n')
     print(json.dumps(get_services(port), indent=4))
+    sleep(3)
+    print('======================\nVault Master:\n')
     print(get_vault_master(port))
     return
 
