@@ -7,7 +7,7 @@ def base_url(port):
 
 def write_vault_key(port, token, key, value):
     headers = {'X-Vault-Token': token, 'Content-Type': 'application/json'}
-    body = json.dumps({'value': value})
+    body = json.dumps({'value': value}) # Gotta json-ize that body
     return requests.post(base_url(port) + key, headers=headers, data=body).status_code
 
 def main():
@@ -19,8 +19,8 @@ def main():
     except IndexError as e:
         print('Usage: ./vault-write.py port token key value')
         exit(1)
-    
-    if write_vault_key(port, token, key, value) == 204: # Gotta compare it to int, not string. Strong types ftw.
+
+    if write_vault_key(port, token, key, value) == 204: # HTTP 204 means "good write" in Vault-ese
         print("Data written!")
     else:
         print("Computer says no")

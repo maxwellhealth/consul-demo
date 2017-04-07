@@ -7,7 +7,7 @@ def base_url(port):
 
 def read_vault_key(port, token, key):
     headers = {'X-Vault-Token': token}
-    return requests.get(base_url(port) + key, headers=headers)
+    return requests.get(base_url(port) + key, headers=headers) # See how easy this is?
 
 def main():
     try:
@@ -20,7 +20,6 @@ def main():
 
     response = json.loads(read_vault_key(port, token, key).text)
     print(response['data'])
-
     return
 
 if __name__ == "__main__":
